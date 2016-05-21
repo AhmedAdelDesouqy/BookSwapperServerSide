@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 21, 2016 2:00:14 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.Books" table="books" catalog="bookswap" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="30" not-null="true" />
+        </property>
+        <property name="yearrelase" type="int">
+            <column name="yearrelase" not-null="true" />
+        </property>
+        <property name="authorname" type="string">
+            <column name="authorname" length="30" not-null="true" />
+        </property>
+        <property name="timestimp" type="string">
+            <column name="timestimp" length="16777215" />
+        </property>
+        <property name="imageurl" type="string">
+            <column name="imageurl" length="100" />
+        </property>
+        <set name="userbooks" table="userbook" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="bookid" not-null="true" />
+            </key>
+            <one-to-many class="pojo.Userbook" />
+        </set>
+    </class>
+</hibernate-mapping>
